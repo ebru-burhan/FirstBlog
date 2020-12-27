@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,8 +167,10 @@
     <Compile Include="Models\ViewsModels\CategoryManipulationVm.cs" />
     <Compile Include="Models\ViewsModels\ListCategoryVm.cs" />
     <Compile Include="Models\ViewsModels\ListPostVm.cs" />
+    <Compile Include="Models\ViewsModels\ListUserVm.cs" />
     <Compile Include="Models\ViewsModels\PostDetailVm.cs" />
     <Compile Include="Models\ViewsModels\PostManipulationVm.cs" />
+    <Compile Include="Models\ViewsModels\UserManipulationVm.cs" />
     <Compile Include="Models\ViewsModels\VmUserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -316,6 +319,8 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Favorite\Index.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
