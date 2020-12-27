@@ -8,30 +8,37 @@
 @Html.ActionLink("Add Category", "AddCategory", null, new { @class = "btn btn-secondary" })
 
 <div class="row" style="margin-top:20px;">
+    @if (Model.Categories.Count == 0)
+    {
+        <p>No Category</p>
+    }
+    else
+    {
 
-    <div class="col col-md-6">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th colspan="2"></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (Category category in Model.Categories)
-                {
+        <div class="col col-md-6">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td scope="row">@category.ID</td>
-                        <td>@category.Name</td>
-                        <td>@Html.ActionLink("Edit", "EditCategory", new {id = category.ID } , new { @class = "btn btn-xs btn-primary" })</td>
-                        <td>@Html.ActionLink("Delete" , "DeleteCategory" , new { id = category.ID } , new { @class = "btn btn-xs btn-danger" })</td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th colspan="2"></th>
                     </tr>
-                }
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-    </div>
+                    @foreach (Category category in Model.Categories)
+                    {
+                        <tr>
+                            <td scope="row">@category.ID</td>
+                            <td>@category.Name</td>
+                            <td>@Html.ActionLink("Edit", "EditCategory", new { id = category.ID }, new { @class = "btn btn-xs btn-primary" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteCategory", new { id = category.ID }, new { @class = "btn btn-xs btn-danger" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
 
 </div>

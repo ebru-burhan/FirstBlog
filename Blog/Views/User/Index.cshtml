@@ -7,33 +7,46 @@
 
 @Html.ActionLink("Add User", "AddUser", null, new { @class = "btn btn-secondary" })
 
+
+
 <div class="row" style="margin-top:20px;">
-
-    <div class="col col-md-6">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Email</th>
-                    <th colspan="2"></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (User user in Model.Users)
-                {
+    @if (Model.Users.Count == 0)
+    {
+        <p>No Users</p>
+    }
+    else
+    {
+        <div class="col col-md-6">
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td scope="row">@user.ID</td>
-                        <td>@user.UserName</td>
-                        <td>@user.Email</td>
-                        <td>@Html.ActionLink("Edit", "EditUser", new { id = user.ID }, new { @class = "btn btn-xs btn-primary" })</td>
-                        <td>@Html.ActionLink("Delete", "DeleteUser", new { id = user.ID }, new { @class = "btn btn-xs btn-danger" })</td>
+                        <th scope="col">ID</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th colspan="2"></th>
                     </tr>
-                }
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-    </div>
+                    @foreach (User user in Model.Users)
+                    {
+                        <tr>
+                            <td scope="row">@user.ID</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@Html.ActionLink("Edit", "EditUser", new { id = user.ID }, new { @class = "btn btn-xs btn-primary" })</td>
+                            <td>@Html.ActionLink("Delete", "DeleteUser", new { id = user.ID }, new { @class = "btn btn-xs btn-danger" })</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+
 
 </div>
+
+
+
+

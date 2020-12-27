@@ -63,7 +63,6 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
-
             _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
 

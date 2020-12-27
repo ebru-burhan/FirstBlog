@@ -87,3 +87,4 @@ D:\Projects\KendiCalismalarim\Mvc\Blog\Blog\obj\Debug\Blog.Migrations.AddUser.re
 D:\Projects\KendiCalismalarim\Mvc\Blog\Blog\obj\Debug\Blog.csprojAssemblyReference.cache
 D:\Projects\KendiCalismalarim\Mvc\Blog\Blog\obj\Debug\Blog.Migrations.AddCart.resources
 D:\Projects\KendiCalismalarim\Mvc\Blog\Blog\obj\Debug\Blog.Migrations.DeleteCart.resources
+D:\Projects\KendiCalismalarim\Mvc\Blog\Blog\obj\Debug\Blog.Migrations.updateUser.resources

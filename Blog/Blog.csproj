@@ -157,6 +157,10 @@
     <Compile Include="Migrations\202012241337298_DeleteCart.designer.cs">
       <DependentUpon>202012241337298_DeleteCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012271958436_updateUser.cs" />
+    <Compile Include="Migrations\202012271958436_updateUser.designer.cs">
+      <DependentUpon>202012271958436_updateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attributes\UserAuthorize.cs" />
     <Compile Include="Models\EntityFramework\BlogContext.cs" />
@@ -321,6 +325,7 @@
     <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012241337298_DeleteCart.resx">
       <DependentUpon>202012241337298_DeleteCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012271958436_updateUser.resx">
+      <DependentUpon>202012271958436_updateUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
