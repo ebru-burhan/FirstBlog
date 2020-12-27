@@ -1,0 +1,52 @@
+﻿@model PostManipulationVm
+@{
+    ViewBag.Title = "EditPost";
+}
+
+<h2>EditPost</h2>
+
+
+@using (Html.BeginForm("EditPost", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Post.ID)
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.Label("Categories", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Post.CategoryId, new SelectList(Model.Categories, "ID", "Name"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Post.Description, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Post.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.ImagesUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.ImagesUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Post.ImagesUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

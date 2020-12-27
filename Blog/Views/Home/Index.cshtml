@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model ListPostVm
+
+
+@Html.ActionLink("Add Post" , "AddPost" , null , new { @class = "btn btn-secondary" })
+
+<div class="row" style="margin-top:20px;">
+
+    @foreach (Post post in Model.Posts)
+    {
+        <div class="col col-md-4" style="margin-bottom:20px">
+            <div class="card">
+                <img src="@post.ImagesUrl" class="card-img-top" style="height:300px;object-fit: cover;" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@post.Title</h5>
+                    <p class="card-text">@post.Description</p>
+                    @Html.ActionLink("Show More", "PostDetail", new { id = post.ID }, new { @class = "btn btn-xs btn-primary" })
+                    @Html.ActionLink("Edit", "EditPost", new { id = post.ID }, new { @class = "btn btn-xs btn-success" })
+                    @Html.ActionLink("Delete", "DeletePost", new { id = post.ID }, new { @class = "btn btn-xs btn-danger" })
+                    @Html.ActionLink("<3", "AddPostToFavorites", "Admin", new { id = post.ID }, new { @class = "btn btn-xs btn-default" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,34 @@
+﻿@model ListCategoryVm
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Add Category", "AddCategory", null, new { @class = "btn btn-secondary" })
+
+<div class="row" style="margin-top:20px;">
+
+    <div class="col col-md-6">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Category category in Model.Categories)
+                {
+                    <tr>
+                        <td scope="row">@category.ID</td>
+                        <td>@category.Name</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

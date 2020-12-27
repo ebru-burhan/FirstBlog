@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        @Html.ActionLink("First Blog", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Posts", "Index", "Home", null, new { @class = "nav-link" })
+                </li>
+
+                @if (Session["loginUser"] != null)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Categories", "Index", "Category", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Users", "Index", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Favorites", "ListMyFavorites", "Admin", null, new { @class = "nav-link" })
+                    </li>
+                }
+                <!--eğer li içinde if yazarsak içini görmez incele de fakat boş olrak orda bi menü olduğunu farkeder-->
+
+            </ul>
+
+            <form class="navbar-form navbar-left">
+                @if (Session["loginUser"] == null)
+                {
+                    @Html.ActionLink("Login", "Login", "Admin", null, new { @class = "btn btn-xs btn-primary " })
+                }
+                else
+                {
+                    @Html.ActionLink("Logout", "Logout", "Admin", null, new { @class = "btn btn-xs btn-primary " })
+                }
+            </form>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>
+
