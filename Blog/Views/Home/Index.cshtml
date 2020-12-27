@@ -4,8 +4,11 @@
 
 @model ListPostVm
 
+@if (Session["loginUser"] != null)
+{
+    @Html.ActionLink("Add Post", "AddPost", null, new { @class = "btn btn-secondary" })
+}
 
-@Html.ActionLink("Add Post" , "AddPost" , null , new { @class = "btn btn-secondary" })
 
 <div class="row" style="margin-top:20px;">
 
@@ -18,9 +21,14 @@
                     <h5 class="card-title">@post.Title</h5>
                     <p class="card-text">@post.Description</p>
                     @Html.ActionLink("Show More", "PostDetail", new { id = post.ID }, new { @class = "btn btn-xs btn-primary" })
-                    @Html.ActionLink("Edit", "EditPost", new { id = post.ID }, new { @class = "btn btn-xs btn-success" })
-                    @Html.ActionLink("Delete", "DeletePost", new { id = post.ID }, new { @class = "btn btn-xs btn-danger" })
-                    @Html.ActionLink("<3", "AddPostToFavorites", "Admin", new { id = post.ID }, new { @class = "btn btn-xs btn-default" })
+
+                    @if (Session["loginUser"] != null)
+                    {
+                        @Html.ActionLink("Edit", "EditPost", new { id = post.ID }, new { @class = "btn btn-xs btn-success" })
+                        @Html.ActionLink("Delete", "DeletePost", new { id = post.ID }, new { @class = "btn btn-xs btn-danger" })
+                        @Html.ActionLink("<3", "AddPostToFavorites", "Favorite", new { id = post.ID }, new { @class = "btn btn-xs btn-default" })
+                    }
+
                 </div>
             </div>
         </div>
