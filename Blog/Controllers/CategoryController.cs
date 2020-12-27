@@ -49,5 +49,36 @@ namespace Blog.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult EditCategory(int id)
+        {
+            CategoryManipulationVm model = new CategoryManipulationVm()
+            {
+                Category = _db.Categories.Find(id)
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditCategory(Category category)
+        {
+
+            _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCategory(int id)
+        {
+            Category category = _db.Categories.Find(id);
+
+            _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Deleted;
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

@@ -15,6 +15,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,8 @@
                     <tr>
                         <td scope="row">@category.ID</td>
                         <td>@category.Name</td>
+                        <td>@Html.ActionLink("Edit", "EditCategory", new {id = category.ID } , new { @class = "btn btn-xs btn-primary" })</td>
+                        <td>@Html.ActionLink("Delete" , "DeleteCategory" , new { id = category.ID } , new { @class = "btn btn-xs btn-danger" })</td>
                     </tr>
                 }
 

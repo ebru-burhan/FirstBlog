@@ -163,6 +163,7 @@
     <Compile Include="Models\EntityFramework\Post.cs" />
     <Compile Include="Models\EntityFramework\User.cs" />
     <Compile Include="Models\Manager\FavoritePostManager.cs" />
+    <Compile Include="Models\ViewsModels\CategoryManipulationVm.cs" />
     <Compile Include="Models\ViewsModels\ListCategoryVm.cs" />
     <Compile Include="Models\ViewsModels\ListPostVm.cs" />
     <Compile Include="Models\ViewsModels\PostDetailVm.cs" />
@@ -314,6 +315,7 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Favorite\Index.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
