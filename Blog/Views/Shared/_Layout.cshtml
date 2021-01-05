@@ -47,7 +47,12 @@
             <form class="navbar-form navbar-left">
                 @if (Session["loginUser"] == null)
                 {
-                    @Html.ActionLink("Login", "Login", "Admin", null, new { @class = "btn btn-xs btn-primary " })
+
+                    if (!Request.Url.PathAndQuery.Contains("Login"))
+                    {
+                        @Html.ActionLink("Login", "Login", "Admin", null, new { @class = "btn btn-xs btn-primary " })
+                    }
+
                 }
                 else
                 {

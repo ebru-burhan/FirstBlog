@@ -1,6 +1,7 @@
-﻿using Blog.Models.EntityFramework;
-using Blog.Models.Manager;
+﻿using Blog.Models.Manager;
 using Blog.Models.ViewsModels;
+using Blog_Data.Models.EntityFramework;
+using Blog_Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace Blog.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        BlogContext _db = new BlogContext();
+        //BlogContext _db = new BlogContext();
+        UserRepository _userRepo = new UserRepository();
 
         [HttpGet]
         public ActionResult Login()
@@ -25,12 +27,11 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
- 
-            BlogContext db = new BlogContext();
+
             VmUserLogin model = new VmUserLogin()
             {
-                User = db.Users.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password)
-            };
+                User = _userRepo.GetAll().FirstOrDefault(z => z.UserName == user.UserName && z.Password == user.Password)
+        };
 
             if (model.User != null)
             {

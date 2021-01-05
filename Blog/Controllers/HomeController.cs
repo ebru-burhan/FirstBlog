@@ -1,7 +1,8 @@
 ﻿using Blog.Models.Attributes;
-using Blog.Models.EntityFramework;
 using Blog.Models.Manager;
 using Blog.Models.ViewsModels;
+using Blog_Data.Models.EntityFramework;
+using Blog_Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,22 @@ namespace Blog.Controllers
 {
     
     public class HomeController : Controller
-    {    // kullnamadn oluşmuyor sqlde db, bu yüzden kullandık nasıl kullnaırsan kullan önmli değil
+    {   /*
+        // kullnamadn oluşmuyor sqlde db, bu yüzden kullandık nasıl kullnaırsan kullan önmli değil
         BlogContext _db = new BlogContext();
+        //repository de açtık _Db yi burda şimdi bunu kadlırıp repo açıcaz
+        */
+
+        PostRepository _postRepo = new PostRepository();
+        CategoryRepository _categoryRepo = new CategoryRepository();
+
 
         [HttpGet]
         public ActionResult Index()
         {
             ListPostVm model = new ListPostVm
             {
-                Posts = _db.Posts.ToList()
+                Posts = _postRepo.GetAll()
             };
             return View(model);
 
@@ -41,7 +49,7 @@ namespace Blog.Controllers
             PostManipulationVm model = new PostManipulationVm
             {
                 Post = new Post(),
-                Categories = _db.Categories.ToList()
+                Categories = _categoryRepo.GetAll()
             };
 
             return View(model);
@@ -60,7 +68,7 @@ namespace Blog.Controllers
                 PostManipulationVm model = new PostManipulationVm
                 {
                     Post = new Post(),
-                    Categories = _db.Categories.ToList()
+                    Categories = _categoryRepo.GetAll()
                 };
 
                 return View(model);
@@ -68,8 +76,7 @@ namespace Blog.Controllers
 
             // _db.Posts.Add(post);
             post.DateCreated = DateTime.Now;
-            _db.Entry<Post>(post).State = System.Data.Entity.EntityState.Added;
-            _db.SaveChanges();
+            _postRepo.Add(post);
 
             return RedirectToAction("Index");
 
@@ -82,7 +89,7 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult PostDetail(int id)
         {
-            Post post = _db.Posts.Find(id);
+            Post post = _postRepo.GetById(id);
             PostDetailVm model = new PostDetailVm()
             {
                 Title = post.Title,
@@ -100,8 +107,8 @@ namespace Blog.Controllers
         {
             PostManipulationVm model = new PostManipulationVm()
             {
-                Post = _db.Posts.Find(id),
-                Categories = _db.Categories.ToList()
+                Post = _postRepo.GetById(id),
+                Categories = _categoryRepo.GetAll()
             };
 
             return View(model);
@@ -111,14 +118,14 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult EditPost(Post post)
         {
-            Post _post = _db.Posts.Find(post.ID);
+            Post _post = _postRepo.GetById(post.ID);
 
             if (!ModelState.IsValid)
             {
                 PostManipulationVm model = new PostManipulationVm()
                 {
                     Post = _post,
-                    Categories = _db.Categories.ToList()
+                    Categories = _categoryRepo.GetAll()
                 };
 
                 return View(model);
@@ -130,8 +137,7 @@ namespace Blog.Controllers
             _post.ImagesUrl = post.ImagesUrl;
             _post.Description = post.Description;
 
-            _db.Entry<Post>(_post).State = System.Data.Entity.EntityState.Modified;
-            _db.SaveChanges();
+            _postRepo.Update(_post);
 
             return RedirectToAction(nameof(Index));
         }
@@ -166,11 +172,9 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult DeletePost(int id)
         {
-            Post post = _db.Posts.Find(id);
+            Post post = _postRepo.GetById(id);
 
-            _db.Entry<Post>(post).State = System.Data.Entity.EntityState.Deleted;
-            _db.SaveChanges();
-
+            _postRepo.Delete(post.ID);
             return RedirectToAction(nameof(Index));
         }
 

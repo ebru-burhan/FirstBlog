@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -137,36 +137,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202012161541000_InitialCreate.cs" />
-    <Compile Include="Migrations\202012161541000_InitialCreate.designer.cs">
-      <DependentUpon>202012161541000_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012231526097_Initial.cs" />
-    <Compile Include="Migrations\202012231526097_Initial.designer.cs">
-      <DependentUpon>202012231526097_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012231527520_AddUser.cs" />
-    <Compile Include="Migrations\202012231527520_AddUser.designer.cs">
-      <DependentUpon>202012231527520_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012241329385_AddCart.cs" />
-    <Compile Include="Migrations\202012241329385_AddCart.designer.cs">
-      <DependentUpon>202012241329385_AddCart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012241337298_DeleteCart.cs" />
-    <Compile Include="Migrations\202012241337298_DeleteCart.designer.cs">
-      <DependentUpon>202012241337298_DeleteCart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012271958436_updateUser.cs" />
-    <Compile Include="Migrations\202012271958436_updateUser.designer.cs">
-      <DependentUpon>202012271958436_updateUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attributes\UserAuthorize.cs" />
-    <Compile Include="Models\EntityFramework\BlogContext.cs" />
-    <Compile Include="Models\EntityFramework\Category.cs" />
-    <Compile Include="Models\EntityFramework\Post.cs" />
-    <Compile Include="Models\EntityFramework\User.cs" />
     <Compile Include="Models\Manager\FavoritePostManager.cs" />
     <Compile Include="Models\ViewsModels\CategoryManipulationVm.cs" />
     <Compile Include="Models\ViewsModels\ListCategoryVm.cs" />
@@ -342,24 +313,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012161541000_InitialCreate.resx">
-      <DependentUpon>202012161541000_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012231526097_Initial.resx">
-      <DependentUpon>202012231526097_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012231527520_AddUser.resx">
-      <DependentUpon>202012231527520_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012241329385_AddCart.resx">
-      <DependentUpon>202012241329385_AddCart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012241337298_DeleteCart.resx">
-      <DependentUpon>202012241337298_DeleteCart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012271958436_updateUser.resx">
-      <DependentUpon>202012271958436_updateUser.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Blog_Data\Blog_Data.csproj">
+      <Project>{A23FDF65-58D5-42E3-8184-0A83DE1E9526}</Project>
+      <Name>Blog_Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

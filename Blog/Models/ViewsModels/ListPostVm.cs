@@ -1,4 +1,4 @@
-﻿using Blog.Models.EntityFramework;
+﻿using Blog_Data.Models.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

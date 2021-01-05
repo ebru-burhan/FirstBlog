@@ -1,6 +1,7 @@
 ﻿using Blog.Models.Attributes;
-using Blog.Models.EntityFramework;
 using Blog.Models.ViewsModels;
+using Blog_Data.Models.EntityFramework;
+using Blog_Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,17 @@ namespace Blog.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
+        //kullanmıyoz db den direk repodan erişiyoz
+        //BlogContext _db = new BlogContext();
 
-        BlogContext _db = new BlogContext();
+
+        CategoryRepository _categoryRepo = new CategoryRepository();
 
         public ActionResult Index()
         {
             ListCategoryVm model = new ListCategoryVm()
             {
-                Categories = _db.Categories.ToList()
+                Categories = _categoryRepo.GetAll()
             };
             return View(model);
         }
@@ -30,7 +34,7 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult AddCategory()
         {
-
+            
             return View(new Category());
         }
 
@@ -40,11 +44,9 @@ namespace Blog.Controllers
         {
             if (!ModelState.IsValid)
             {
-                Category c = new Category();
-                return View(c);
+                return View(new Category());
             }
-            _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Added;
-            _db.SaveChanges();
+            _categoryRepo.Add(category);
             return RedirectToAction("Index");
 
         }
@@ -54,7 +56,7 @@ namespace Blog.Controllers
         {
             CategoryManipulationVm model = new CategoryManipulationVm()
             {
-                Category = _db.Categories.Find(id)
+                Category = _categoryRepo.GetById(id)
             };
 
             return View(model);
@@ -63,8 +65,7 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
-            _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Modified;
-            _db.SaveChanges();
+            _categoryRepo.Update(category);
 
             return RedirectToAction(nameof(Index));
         }
@@ -72,10 +73,9 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult DeleteCategory(int id)
         {
-            Category category = _db.Categories.Find(id);
+            Category category = _categoryRepo.GetById(id);
 
-            _db.Entry<Category>(category).State = System.Data.Entity.EntityState.Deleted;
-            _db.SaveChanges();
+            _categoryRepo.Delete(category.ID);
             return RedirectToAction(nameof(Index));
         }
 

@@ -1,6 +1,6 @@
 ﻿using Blog.Models.Attributes;
-using Blog.Models.EntityFramework;
 using Blog.Models.Manager;
+using Blog_Data.Models.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
